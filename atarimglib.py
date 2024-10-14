@@ -1,13 +1,8 @@
 import cv2.version
 import numpy as np
-import os
-import sys
 import math
 import cv2
-import time
-import pickle
-import uuid
-import matplotlib.pyplot as plt
+
 # 8,9,10,11,14,15
 # 8: 320x192
 # 9: 80x192

@@ -129,4 +129,4 @@ elif compressionmode == 'hline':
     s+="\nrepeat until false;\nend."
     program = s
 
-open("../buildtools/inst.pas","w").write(program)
+open("./inst.pas","w").write(program)

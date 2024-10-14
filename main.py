@@ -129,7 +129,6 @@ elif compressionmode == 'hline':
     s+="\nrepeat until false;\nend."
     program = s
 
-print(program)
 f = open("./image.pas","w")
 f.write(program)
 f.close()

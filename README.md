@@ -6,6 +6,72 @@ This is a python tool that allows users to compress images and display them on a
 atari.bmp works by generating a Pascal file, compiling it with mp and assembling with mads. There are two compression algorithms available, which i will explain in a later section of this Readme.
 
 
+## examples:
+
+
+![mig29 photo](https://github.com/jj15warrior/atari.bmp/blob/main/readme/mig29.jpg?raw=true)
+
+for educational purposes we will use this mig29 photo as our image.
+
+```
+python main.py -c rect readme/mig29.jpg 
+```
+when user does not provide a graphical mode to use, the program will generate all options and prompt the user. You can find all of the generated images in the out/ directory.
+
+here are the generated images
+
+gr8: ![gr8](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr8.png?raw=true)
+gr9: ![gr9](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr9.png?raw=true)
+gr10: ![gr10](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr10.png?raw=true)
+gr11: ![gr11](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr11.png?raw=true)
+gr14: ![gr14](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr14.png?raw=true)
+gr15: ![gr15](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr15.png?raw=true)
+the images will look distorted because atari has non-square pixels
+
+In this case i suppose that gr15 looks the best
+```
+choose version > 15
+```
+This generates the pascal file, and we can take a look inside.
+
+There are 3 major segments. First, const data:
+```pas
+const
+    data_65fadaa9_1: array [0..2575] of byte = (<data>);
+    data_65fadaa9_2: array [0..2999] of byte = (<data>);
+    data_65fadaa9_0: array [0..859] of byte = (<data>);
+```
+
+the var name structure is `data_<random_uuid>_<color>`
+
+
+Second important segment is `procedure B` that contains a drawing function, and last we have loops that call this procedure. This is slightly different in the HLine compression mode.
+
+
+Now, we have to compile this .pas file into an atari executable format like .obx
+
+```
+./Mad-Pascal/bin/mp image.pas -ipath:Mad-Pascal/lib -o:a.a65 -target:a8
+```
+this creates a.a65 which we can assemble
+
+```
+./Mad-Assembler/mads a.a65 -x -i:Mad-Pascal/base
+```
+
+## Running
+I recommend emulating an atari800 xl using [this](https://github.com/atari800/atari800) emulator. It's available in APT and AUR, but any other emulator will do.
+
+```
+atari800 -xl -run a.obx
+```
+
+how it looks emulated: ![emulated image](https://github.com/jj15warrior/atari.bmp/blob/main/readme/emulator.png?raw=true)
+
+You can also copy this obx file onto a SDRIVE device
+
+
+
 
 ## references:
 
@@ -74,71 +140,6 @@ etc.
 python main.py -c <algo> -g <grmode> [file1] [file2] ...
 ```
 note: multi-file compression is not supported at the moment. You can however hack together two pascal scripts because of uuids used to match data to programs
-
-## examples:
-
-
-![mig29 photo](https://github.com/jj15warrior/atari.bmp/blob/main/readme/mig29.jpg?raw=true)
-
-for educational purposes we will use this mig29 photo as our image.
-
-```
-python main.py -c rect readme/mig29.jpg 
-```
-when user does not provide a graphical mode to use, the program will generate all options and prompt the user. You can find all of the generated images in the out/ directory.
-
-here are the generated images
-
-gr8: ![gr8](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr8.png?raw=true)
-gr9: ![gr9](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr9.png?raw=true)
-gr10: ![gr10](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr10.png?raw=true)
-gr11: ![gr11](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr11.png?raw=true)
-gr14: ![gr14](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr14.png?raw=true)
-gr15: ![gr15](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr15.png?raw=true)
-the images will look distorted because atari has non-square pixels
-
-In this case i suppose that gr15 looks the best
-```
-choose version > 15
-```
-This generates the pascal file, and we can take a look inside.
-
-There are 3 major segments. First, const data:
-```pas
-const
-    data_65fadaa9_1: array [0..2575] of byte = (<data>);
-    data_65fadaa9_2: array [0..2999] of byte = (<data>);
-    data_65fadaa9_0: array [0..859] of byte = (<data>);
-```
-
-the var name structure is `data_<random_uuid>_<color>`
-
-
-Second important segment is `procedure B` that contains a drawing function, and last we have loops that call this procedure. This is slightly different in the HLine compression mode.
-
-
-Now, we have to compile this .pas file into an atari executable format like .obx
-
-```
-./Mad-Pascal/bin/mp image.pas -ipath:Mad-Pascal/lib -o:a.a65 -target:a8
-```
-this creates a.a65 which we can assemble
-
-```
-./Mad-Assembler/mads a.a65 -x -i:Mad-Pascal/base
-```
-
-## Running
-I recommend emulating an atari800 xl using [this](https://github.com/atari800/atari800) emulator. It's available in APT and AUR, but any other emulator will do.
-
-```
-atari800 -xl -run a.obx
-```
-
-how it looks emulated: ![emulated image](https://github.com/jj15warrior/atari.bmp/blob/main/readme/emulator.png?raw=true)
-
-You can also copy this obx file onto a SDRIVE device
-
 
 ## Support
 

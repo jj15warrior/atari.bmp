@@ -22,7 +22,7 @@ parser = argparse.ArgumentParser(
                     description='generate images and gifs for atari 8bit computers',
                     epilog='for more info refer to source and comments')
 
-parser.add_argument('-c','--compression', required=False, choices=['squares','hline'] ,help='set compression type. you have to experiment to find one most suitable')
+parser.add_argument('-c','--compression', required=False, choices=['rect','hline'] ,help='set compression type. you have to experiment to find one most suitable')
 parser.add_argument('-g', '--grmode', required=False, help='set graphical mode. optional (will generate all if not set)')
 parser.add_argument('-m','--maxmem', required=False, help='work in progress. Compress until size matched set limit\nrecommended 15kb for 24kb roms, etc')
 parser.add_argument('image', type=argparse.FileType('r', encoding=None), nargs='+')
@@ -30,7 +30,7 @@ parser.add_argument('image', type=argparse.FileType('r', encoding=None), nargs='
 parser.add_help = True
 
 filenames = [n.name for n in parser.parse_args().image]
-compressionmode = "squares"
+compressionmode = "rect"
 compressionmode = parser.parse_args().compression if parser.parse_args().compression != None else compressionmode
 print(compressionmode)
 

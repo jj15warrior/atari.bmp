@@ -1,11 +1,13 @@
 mads:
-	cd Mad-Assembler
-	fpc -Mdelphi -vh -O3 mads.pas
+	cd Mad-Assembler; fpc -Mdelphi -vh -O3 mads.pas
 mp:
-	cd Mad-Pascal
-	fpc -MDelphi -vh -O3 mp.pas
+	cd Mad-Pascal; $(MAKE) all
+
 dirs: mads mp
-	mkdir buildtools
-	cp Mad-Assembler/mads buildtools/
-	cp Mad-Pascal/mp buildtools
+	mkdir build
 all: mads mp dirs
+
+clean:
+	rm -fr build
+	cd Mad-Pascal; make clean
+	cd Mad-Assembler; rm mads;

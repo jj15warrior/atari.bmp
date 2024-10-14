@@ -68,7 +68,7 @@ for gr in modes_to_process:
         atarimglib.posterize(scaled_img,Ti, gr)
         imgs += [scaled_img]
         Ts += [Ti]
-        sc = cv2.cvtColor(scaled_img,cv2.COLOR_RGB2BGR)
+        sc = cv2.cvtColor(scaled_img,cv2.COLOR_BGR2RGB)
         cv2.imwrite("out/"+atarimglib.grmode_names[gr], sc)
 
 if len(modes_to_process)==1:

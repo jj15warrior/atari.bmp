@@ -93,7 +93,7 @@ program_uuid = str(uuid.uuid4()).split('-')[0]
 
 program = ""
 
-if compressionmode == 'squares':
+if compressionmode == 'rect':
     layers_T,counts = atarimglib.layerize(fwd_T,vc)
 
     tsrt = []
@@ -129,4 +129,7 @@ elif compressionmode == 'hline':
     s+="\nrepeat until false;\nend."
     program = s
 
-open("./inst.pas","w").write(program)
+print(program)
+f = open("./image.pas","w")
+f.write(program)
+f.close()

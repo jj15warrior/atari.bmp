@@ -1,0 +1,6 @@
+[submodule "Mad-Pascal"]
+	path = Mad-Pascal
+	url = https://github.com/tebe6502/Mad-Pascal
+[submodule "Mad-Assembler"]
+	path = Mad-Assembler
+	url = https://github.com/tebe6502/Mad-Assembler

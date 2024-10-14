@@ -21,11 +21,17 @@ when user does not provide a graphical mode to use, the program will generate al
 here are the generated images
 
 gr8: ![gr8](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr8.png?raw=true)
+
 gr9: ![gr9](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr9.png?raw=true)
+
 gr10: ![gr10](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr10.png?raw=true)
+
 gr11: ![gr11](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr11.png?raw=true)
+
 gr14: ![gr14](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr14.png?raw=true)
+
 gr15: ![gr15](https://github.com/jj15warrior/atari.bmp/blob/main/out/gr15.png?raw=true)
+
 the images will look distorted because atari has non-square pixels
 
 In this case i suppose that gr15 looks the best
